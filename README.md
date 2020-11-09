@@ -1,6 +1,6 @@
 # PassWords
 Programa para almacenar contraseñas. Se guardan en un fichero en que cada contraseña de codifica. 
-Tal vez esta no sea la mejor manera de hacerlo pero es el primer programa que hago para mi. 
+Tal vez esta no sea la mejor manera de hacerlo pero es un programa que hice para mi cuando empece a programar. 
 
 Funciona :)  
 
