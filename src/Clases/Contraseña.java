@@ -91,6 +91,10 @@ public class Contraseña implements Serializable {
         return decoding(label);
     }
 
+    /**
+     * Retorna el primer caracter del Label Decodificado
+     * @return 
+     */
     public char getFirstLabelDec() {
         return decoding(label).charAt(1);
     }

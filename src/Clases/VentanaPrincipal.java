@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Clases;
 
 import Clases.Contraseña;
+import Clases.Contraseña;
+import Clases.ContraseñaIncio;
 import Clases.ContraseñaIncio;
 import Clases.FicheroContraseñaOut;
 import Clases.FicheroContraseñaIn;
+import Clases.FicheroContraseñaIn;
+import Clases.FicheroContraseñaOut;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -172,7 +176,8 @@ public class VentanaPrincipal extends JFrame {
         bVerTodos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                bVerTodo();
+                //bVerTodo();
+                bVerTodoAlfa();
             }
         }
         );
@@ -387,24 +392,36 @@ public class VentanaPrincipal extends JFrame {
         }
 
     }
-    
-    
-        /**
-     * Método al pulsar botón "VER TODAS"
+
+    /**
+     * Método al pulsar botón "VER TODAS" odenadas alfabeticamente
      */
     private void bVerTodoAlfa() {
         try {
-            String s = "";
+            //Contador de contraseñas
+            int nContra = 1;
+            Contraseña contraseñas[] = new Contraseña[nContra];
             FicheroContraseñaIn fci = new FicheroContraseñaIn(nArchivo);
             if (!fci.ficheroVacio()) {
                 Contraseña contraseña = fci.leerContraseña();
-                Contraseña contraseñas;
+
                 while (!contraseña.isCentinela()) {
-                    s += contraseña.toString() + "\n";
+                    contraseñas = addArrayC(contraseñas, nContra);
+                    contraseñas[nContra-1] = contraseña;
+                    nContra++;                  
                     contraseña = fci.leerContraseña();
                 }
                 fci.cerrar();
-                pantalla.setText(s);
+
+                //Ordenamos el array
+                contraseñas = ordenar(contraseñas);
+
+                //Visualizamos por pantalla
+                String c = "";
+                for (int i = 0; i < contraseñas.length; i++) {
+                    c += contraseñas[i].toString() + "\n";                    
+                }
+                pantalla.setText(c);
                 vaciarCasillas();
             } else {
                 pantalla.setText("Fichero Vacío");
@@ -415,6 +432,47 @@ public class VentanaPrincipal extends JFrame {
             pantalla.setText("Todavía no hay ninguna contraseña");
         }
 
+    }
+
+    /**
+     * Método de ordenación de la burbuja
+     *
+     * @param contraseñas
+     * @return
+     */
+    public Contraseña[] ordenar(Contraseña[] contraseñas) {
+        //primer ciclo para recorrer el vector
+        for (int i = 0; i < contraseñas.length; i++) {
+            //segundo ciclo para recorerr el vector y verificar que el valor de i en el primer ciclo sea diferente al valor de j de este segundo ciclo
+            for (int j = 0; j < contraseñas.length && i != j; j++) {
+                //comparamos las posiciones de cada ciclo para saber que valor va alfabéticamente antes que el otro
+                if (contraseñas[i].getLabelDec().compareToIgnoreCase(contraseñas[j].getLabelDec()) < 0) {
+                    //variable auxiliar para guardar el valor de i
+                    Contraseña aux = contraseñas[i];
+                    //cambio de posiciones
+                    contraseñas[i] = contraseñas[j];
+                    contraseñas[j] = aux;
+                }
+            }
+        }
+
+        return contraseñas;
+    }
+
+    /**
+     * Añadir un nuevo elemento y modificar el tamaña en un array
+     *
+     * @param original
+     * @param c
+     * @param size
+     * @return
+     */
+    private Contraseña[] addArrayC(Contraseña[] original, int size) {
+        Contraseña[] temp = new Contraseña[size];
+        for (int i = 0; i < original.length; i++) {
+            temp[i] = original[i];
+        }
+        return temp;
     }
 
     /**

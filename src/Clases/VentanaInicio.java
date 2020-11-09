@@ -1,7 +1,7 @@
 /**
  * Ventana que aparece al iniciarse
  */
-package Main;
+package Clases;
 
 import java.awt.Color;
 import java.awt.FlowLayout;

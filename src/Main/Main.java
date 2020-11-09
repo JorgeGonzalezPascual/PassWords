@@ -1,5 +1,7 @@
 package Main;
 
+import Clases.VentanaInicio;
+import Clases.VentanaPrincipal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
