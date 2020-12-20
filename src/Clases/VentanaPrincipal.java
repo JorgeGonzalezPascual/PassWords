@@ -5,14 +5,6 @@
  */
 package Clases;
 
-import Clases.Contraseña;
-import Clases.Contraseña;
-import Clases.ContraseñaIncio;
-import Clases.ContraseñaIncio;
-import Clases.FicheroContraseñaOut;
-import Clases.FicheroContraseñaIn;
-import Clases.FicheroContraseñaIn;
-import Clases.FicheroContraseñaOut;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;

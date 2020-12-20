@@ -114,7 +114,7 @@ public class VentanaInicio extends JFrame {
 
         //.setBounds(x,y,ancho,alto)
         panelImg.setBounds((ancho_MAX / 2) - 100, 50, 200, 200);
-        areaTexto.setBounds(2, 285, ancho_MAX - 10, 20);
+        areaTexto.setBounds(2, 285, ancho_MAX - 20, 20);
         panelBoton.setBounds(0, 315, ancho_MAX, 200);
         panelBoton.add(entrar);
 
