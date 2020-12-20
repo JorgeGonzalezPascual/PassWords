@@ -8,6 +8,7 @@ package Clases;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -238,7 +239,8 @@ public class VentanaPrincipal extends JFrame {
         taPassword.setEditable(false);
 
         //Scroll Pane
-        scrollPane = new JScrollPane(pantalla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane = new JScrollPane(pantalla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVisible(true);
 
         //.setBounds(x,y,ancho,alto)
@@ -399,8 +401,8 @@ public class VentanaPrincipal extends JFrame {
 
                 while (!contraseña.isCentinela()) {
                     contraseñas = addArrayC(contraseñas, nContra);
-                    contraseñas[nContra-1] = contraseña;
-                    nContra++;                  
+                    contraseñas[nContra - 1] = contraseña;
+                    nContra++;
                     contraseña = fci.leerContraseña();
                 }
                 fci.cerrar();
@@ -411,9 +413,10 @@ public class VentanaPrincipal extends JFrame {
                 //Visualizamos por pantalla
                 String c = "";
                 for (int i = 0; i < contraseñas.length; i++) {
-                    c += contraseñas[i].toString() + "\n";                    
+                    c += contraseñas[i].toString() + "\n";
                 }
                 pantalla.setText(c);
+                pantalla.setCaretPosition(0);
                 vaciarCasillas();
             } else {
                 pantalla.setText("Fichero Vacío");
