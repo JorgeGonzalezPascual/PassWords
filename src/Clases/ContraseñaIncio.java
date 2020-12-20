@@ -6,13 +6,13 @@
 package Clases;
 
 import java.io.Serializable;
-import javax.xml.bind.DatatypeConverter;
+import java.util.Base64;
 
 /**
  *
  * @author Jorge
  */
-public class ContraseñaIncio implements Serializable{
+public class ContraseñaIncio implements Serializable {
 
     private String password;
 
@@ -20,18 +20,17 @@ public class ContraseñaIncio implements Serializable{
         this.password = coding(p);
     }
 
-    private String coding(String s) {
-        //coding data using BASE64
-        return DatatypeConverter.printBase64Binary(s.getBytes());
+    private String coding(String entradaOriginal) {
+        return Base64.getEncoder().encodeToString(entradaOriginal.getBytes());
+
     }
 
-    private String decoding(String encoded) {
-        //decoding data using BASE64
-        return new String(DatatypeConverter.parseBase64Binary(encoded));
+    private String decoding(String cadenaCodificada) {
+        return new String(Base64.getDecoder().decode(cadenaCodificada));
     }
 
     public String getPassword() {
         return decoding(password);
     }
-   
+
 }

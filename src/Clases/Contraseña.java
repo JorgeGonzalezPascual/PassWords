@@ -1,7 +1,8 @@
 package Clases;
 
 import java.io.Serializable;
-import javax.xml.bind.DatatypeConverter;
+import java.util.Base64;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,14 +30,13 @@ public class Contraseña implements Serializable {
     public Contraseña() {
     }
 
-    private String coding(String s) {
-        //coding data using BASE64
-        return DatatypeConverter.printBase64Binary(s.getBytes());
+    private String coding(String entradaOriginal) {
+        return Base64.getEncoder().encodeToString(entradaOriginal.getBytes());
+
     }
 
-    private String decoding(String encoded) {
-        //decoding data using BASE64
-        return new String(DatatypeConverter.parseBase64Binary(encoded));
+    private String decoding(String cadenaCodificada) {
+        return new String(Base64.getDecoder().decode(cadenaCodificada));
     }
 
     @Override
@@ -93,7 +93,8 @@ public class Contraseña implements Serializable {
 
     /**
      * Retorna el primer caracter del Label Decodificado
-     * @return 
+     *
+     * @return
      */
     public char getFirstLabelDec() {
         return decoding(label).charAt(1);
